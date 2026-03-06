@@ -57,6 +57,11 @@ Fair use:
 
 - Pipeline writes outputs to a local DuckDB database file (output path configurable).
 
+DuckDB docs:
+
+- https://duckdb.org/docs/
+- https://duckdb.org/docs/api/python/overview
+
 ## Required output
 
 ### Core mart table: Emerald-only + array column (required)
