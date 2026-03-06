@@ -1,4 +1,4 @@
-# Data Engineering Take-Home (2-3 hours): PokeAPI -> DuckDB
+# Data Engineering Take-Home (2-3 hours): PokeAPI -> DuckDB Mart (Emerald Filter)
 
 ## Objective
 
@@ -57,35 +57,9 @@ Fair use:
 
 - Pipeline writes outputs to a local DuckDB database file (output path configurable).
 
-## Output Tables (required)
+## Required output
 
-### A) Raw landing: Pokemon detail responses (required)
-
-Provide a raw representation of Pokemon detail responses useful for auditing/debugging.
-
-Minimum requirements (somewhere in the raw layer):
-
-- `pokemon_id` INT
-- `ingested_at` TIMESTAMP (or equivalent; document meaning)
-- `source_url` TEXT (nullable acceptable if documented)
-- Enough information to audit the Emerald filter (storing the full JSON payload is acceptable).
-
-Acceptable raw formats (choose one; document which):
-
-1) Raw payload table (simple)
-
-- Table: `raw_pokeapi_pokemon`
-  - `pokemon_id` INT
-  - `ingested_at` TIMESTAMP
-  - `source_url` TEXT
-  - `payload_json` TEXT/JSON (full JSON response)
-
-2) Lossless flattened/normalized raw tables
-
-- Structural flattening is fine as long as it remains "raw" (no business logic) and provenance exists.
-- `README.md` must describe what raw table(s) to inspect for a single `pokemon_id`, including how `game_indices` is represented.
-
-### B) Core mart table: Emerald-only + array column (required)
+### Core mart table: Emerald-only + array column (required)
 
 Table: `mart_emerald_pokemon`
 
@@ -107,11 +81,13 @@ Notes:
 - The array can be a native DuckDB LIST/ARRAY type or a JSON string representing an array; document which you chose.
 - You may add more columns to the mart if you want (keep the required minimum present).
 
-## Optional (encouraged): Dimensional modeling / curated tables
+## Optional (encouraged)
 
-You may create additional curated/dimensional tables (e.g., `dim_pokemon`, type/move bridges, stats tables) if you want to show more.
+You may create additional tables if you want to show more, for example:
 
-These are optional and not required for a complete submission.
+- raw landing tables (e.g., persisting the full JSON payloads)
+- curated/dimensional models (e.g., `dim_pokemon`, bridge tables for types/moves)
+- additional mart tables
 
 ## Rerun behavior (required)
 
@@ -124,9 +100,9 @@ Implement retry OR clear error logging/reporting (either is acceptable).
 
 - If some IDs fail, the run must still complete and report which IDs failed (logs are fine).
 
-## Data checks (required)
+## Data checks (optional)
 
-Two basic checks on the mart table are sufficient (tests or runtime validation). Examples (pick any two):
+If you have time, add a couple of simple checks on the mart table (as tests or runtime validation). Examples (pick any two):
 
 - `pokemon_id` is unique and non-null in `mart_emerald_pokemon`
 - `name` is non-null in `mart_emerald_pokemon`
@@ -140,7 +116,7 @@ Two basic checks on the mart table are sufficient (tests or runtime validation).
   - exact run command for a small window (e.g., 1--10)
   - exact run command for a larger window (e.g., 1--151)
   - how to set DuckDB output path
-  - brief description of required tables (`raw_pokeapi_pokemon` or equivalent, and `mart_emerald_pokemon`)
+  - brief description of the required table (`mart_emerald_pokemon`)
   - brief tradeoffs / next steps
 
 ## Appendix: Reviewer Workflow (example DuckDB queries)
