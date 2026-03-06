@@ -21,17 +21,20 @@ Emphasis is on API interaction quality and reproducibility; dimensional modeling
 
 ## Requirements
 
-### 1) One non-interactive run command (required)
+### 1) One runnable execution path (choose one)
 
-- Provide a single command that runs end-to-end (fetch -> persist -> mart).
-- This can be a CLI you implement (e.g., `python -m ...`) or an orchestrator-driven command (allowed, highly optional).
-- Must run headlessly from the command line (no manual UI steps).
-- `README.md` must show the exact command(s) to run.
+Provide either:
 
-#### Notebook policy
+- Command-line path (recommended): a single command that runs end-to-end (fetch -> persist -> mart). This can be a CLI you implement (e.g., `python -m ...`) or an orchestrator-driven command (allowed, highly optional).
 
-- Notebooks are allowed.
-- Please also provide the command-line run path described above (avoid notebook-only submissions).
+OR
+
+- Notebook-only path: a notebook that can be run top-to-bottom to execute the full flow (fetch -> persist -> mart).
+
+In both cases:
+
+- The run should be reproducible from a fresh environment using the steps in `README.md`.
+- The run should not require manual UI steps beyond starting the command or running the notebook.
 
 ### 2) Source API (required)
 
