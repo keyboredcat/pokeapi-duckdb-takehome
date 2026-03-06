@@ -83,7 +83,7 @@ Required columns (minimum):
 
 Notes:
 
-- The array can be a native DuckDB LIST/ARRAY type or a JSON string representing an array; document which you chose.
+- The array can be a native DuckDB LIST/ARRAY type or a JSON string representing an array.
 - You may add more columns to the mart if you want (keep the required minimum present).
 
 ## Optional (encouraged)
@@ -122,7 +122,6 @@ If you have time, add a couple of simple checks on the mart table (as tests or r
   - exact run command for a larger window (e.g., 1--151)
   - how to set DuckDB output path
   - brief description of the required table (`mart_emerald_pokemon`)
-  - brief tradeoffs / next steps
 
 ## Appendix: Reviewer Workflow (example DuckDB queries)
 
