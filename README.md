@@ -30,8 +30,8 @@ Emphasis is on API interaction quality and reproducibility; dimensional modeling
 
 #### Notebook policy
 
-- Notebooks must not be the primary solution.
-- Optional notebooks are allowed as supplements only.
+- Notebooks are allowed.
+- Please also provide the command-line run path described above (avoid notebook-only submissions).
 
 ### 2) Source API (required)
 
